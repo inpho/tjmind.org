@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" /> 
+<title>TJMind.org Topic Explorer</title>
+<!--<script src="lib/jquery-1.11.0.min.js"></script>
+<script src="lib/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="lib/bootstrap-2.3.2/css/bootstrap.min.css" />-->
+    
+<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+<style>
+.logo-word {
+  background-image: url('/img/inpho_logo.png');
+  background-size: 86px 46px;
+  background-repeat: no-repeat;
+  width: 86px;
+  height: 48px;
+  padding-top: -10px;
+  margin-top: 6px;
+  margin-bottom: 5px;
+  margin-left: -6px;
+  display: inline-block;
+  text-indent: 86px;
+  color: #fff;
+}
+h1 {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 59px;
+  line-height: 1;
+  color: inherit;
+  letter-spacing: -1px;
+}
+
+/*.btn {
+  vertical-align: middle;
+  margin-top: 2px;
+}*/
+#twitter-widget-0 {
+  margin-bottom: -11px;
+  margin-left: 11px;
+}
+.top {
+  text-align: center;
+  margin-bottom: 15px; 
+}
+.top h1 {
+  font-size: 59px;
+  line-height: 1;
+  color: inherit;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+.top {
+  margin-bottom: 45px;
+}
+.vid-container {
+  text-align: center;
+}
+
+.dropdown-topics {
+  left: 50%;
+  right: auto;
+  text-align: center;
+  transform: translate(-50%, 0);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<div class="row">
+<div class="col-xs-12">
+    <img src="img/logo.jpg" style="margin: 0 auto; display: block;" width="529">
+</div>
+  <div class="col-xs-12 top">
+    <form action="http://inphodata.cogs.indiana.edu:17020/" method="GET" class="form-horizontal col-sm-6 col-lg-4 col-lg-offset-2">
+      <p>TJMind is a way to interactively explore and interpret Jefferson's life, letters, and influences, try it below!</p>
+      <div class='form-group'>
+        <div class="input-group">
+          <select class='form-control' id="selectCorpora">
+            <option value=''>Select a Corpus</option>
+            <option value=''>-----------------------</option>
+          </select>
+          <div class="input-group-btn">
+            <button class="btn btn-default" type="button" id="randomCorpus" data-original-title="" title=""><span class="glyphicon glyphicon-random"></span></button>
+          </div>
+        </div>
+      </div>
+      <div class='form-group'>
+        <div class="input-group">
+          <input type="hidden" name="doc" id="hidden_id">
+          <input type="text" id="doc" class="form-control typeahead" placeholder="Click button on right to select random document →" autocomplete="off" disabled>
+          <div class="input-group-btn">
+            <button class="btn btn-default" type="button" id="randomDoc" data-original-title="" title=""><span class="glyphicon glyphicon-random"></span></button>
+            
+          </div>
+        </div>
+      </div>
+      <div class="center-block">
+        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Visualize <span class="caret"></span></a>
+
+        <ul class="dropdown-menu dropdown-topics" id="topics">
+        </ul>
+      </div>
+    </form>
+   <div class="col-xs-12 col-sm-6">
+      <div class="col-sm-12 col-lg-9">
+        <h4 id="corpusTitle">Select a collection from the menus on the left to find out more.</h4>
+        <p id="corpusDescription">
+</p>
+     </div>
+    </div>
+    </div>
+<div class="col-xs-12">
+  <div class="alert alert-info">
+<p>Here at the TJMind portal site you can explore computer-generated topic models of Thomas Jefferson's readings and writings. If it's your first time visiting the site, you may want to watch the videos below to learn what you can do with topic models at this site.</p>
+
+<p>This demo presents models of two sets of documents: (A) the documents in the <a href="http://www.gutenberg.org/ebooks/author/6927">Thomas Jefferson Letters, Randolph Edition (1829), which includes Jefferson's Memoir</a>, and (B) a combined corpus of the Randolph edition with 166 books from <a href="http://www.librarything.com/catalog/ThomasJefferson/retirementlibrary18151826">Jefferson's retirement library</a>.</p>
+
+<p>The next phase of project development will bring online models of all 552 books he collected during his retirement (from his return to Monticello in 1809 until his death in 1826) along with the entire series of <a href="https://www.monticello.org/site/research-and-collections/papers">letters
+from this period</a>.  Subsequent phases will expand to include his earlier libraries and letters.</p>
+
+<p>You may choose which set of documents to search, or simply begin by typing in the search box to locate books and letters from the combined corpus. Clicking <span class="icon-random"></span> will select a document at random. You should then click 'Visualize' and choose among coarse-grained (20-topic), medium-grained (40-, 60-), and fine-grained (80-topic) analyses. (40 is a good choice to start.) You will be guided further on the page that loads. </p>
+
+<p>You may also begin by viewing <a href="/featured/eppes-18160401/60/">a letter that Jefferson wrote in 1816 to his son-in-law about his grandson's education</a>. This letter is a <a href="https://www.monticello.org/site/research-and-collections/featured-letter-grandson’s-linguistic-education">featured letter at Jefferson Library at Monticello.org</a>.</p>
+
+<p>Please watch the videos to see the interface in action.</p>
+  </div>
+  <p>
+  This site has been developed in partnership with 
+  the <a href="http://tjlibraries.monticello.org/">Thomas Jefferson's Libraries</a> project,
+  <a href="http://www.monticello.org/site/research-and-collections/papers">The Papers of Thomas Jefferson: Retirement Series</a>,
+  the <a href="http://www.monticello.org/site/research-and-collections/robert-h-smith-international-center-jefferson-studies">Robert H. Smith International Center for Jefferson Studies</a>,
+  the <a href="https://www.hathitrust.org/htrc">Hathi Trust Research Center</a>,
+  and the <a href="http://idah.indiana.edu/">Institute for Digital Arts and Humanities</a> at <a href="http://iub.edu/">Indiana University, Bloomington</a>.
+  </p>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-6">
+<h3>Narrative Video</h3>
+<p>Watch this video for an example of how the Topic Explorer can be used to pursue specific interests and read the documents associated with the topics.</p>
+</div>
+<div class="col-xs-6">
+<h3>Tools Video</h3>
+<p>Watch this video for an introduction to topic models and the Topic Explorer's "Hypershelf" interface.</p>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-6">
+  <iframe width="460" height="258" src="https://www.youtube.com/embed/SGpZ1SzNjts" frameborder="0" allowfullscreen></iframe>
+</div>
+<div class="col-xs-6">
+  <iframe width="460" height="258" src="https://www.youtube.com/embed/Vr_RlPNWfJQ" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+<div class="row" style="padding-top: 50px;">
+<hr />
+<div class="col-xs-6">
+  <a href="http://www.neh.gov/"><img src="img/neh.png" alt="National Endowment for the Humanities" width="252" height="62" /></a>
+</div>
+<div class="col-xs-6" style="text-align: right;">
+  <h3>TJ<span style="color: #009900;">mind</span> is powered by <a href="https://inpho.cogs.indiana.edu"><span class="logo-word">InPhO</span></a></h3>
+</div>
+</div>
+</div>
+ 
+    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+<script src='https://rawgit.com/twbs/bootstrap/v2.3.2/js/bootstrap-typeahead.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+
+        <script src="tjmind.js"></script>
+  
+</body>
+</html>
